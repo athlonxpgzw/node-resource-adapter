@@ -1,0 +1,56 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: adapter-config
+  namespace: custom-metrics
+data:
+  config.yaml: |
+    rules:
+    - seriesQuery: 'cpu_usage_active{instance!=""}'
+      resources:
+        overrides:
+          instance:
+            resource: node
+      metricsQuery: <<.Series>>{<<.LabelMatchers>>}
+    - seriesQuery: 'cpu_usage_avg_5m{instance!=""}'
+      resources:
+        overrides:
+          instance:
+            resource: node
+      metricsQuery: <<.Series>>{<<.LabelMatchers>>}
+    - seriesQuery: 'cpu_usage_max_avg_1h{instance!=""}'
+      resources:
+        overrides:
+          instance:
+            resource: node
+      metricsQuery: <<.Series>>{<<.LabelMatchers>>}
+    - seriesQuery: 'cpu_usage_max_avg_1d{instance!=""}'
+      resources:
+        overrides:
+          instance:
+            resource: node
+      metricsQuery: <<.Series>>{<<.LabelMatchers>>}
+    - seriesQuery: 'mem_usage_active{instance!=""}'
+      resources:
+        overrides:
+          instance:
+            resource: node
+      metricsQuery: <<.Series>>{<<.LabelMatchers>>}
+    - seriesQuery: 'mem_usage_avg_5m{instance!=""}'
+      resources:
+        overrides:
+          instance:
+            resource: node
+      metricsQuery: <<.Series>>{<<.LabelMatchers>>}
+    - seriesQuery: 'mem_usage_max_avg_1h{instance!=""}'
+      resources:
+        overrides:
+          instance:
+            resource: node
+      metricsQuery: <<.Series>>{<<.LabelMatchers>>}
+    - seriesQuery: 'mem_usage_max_avg_1d{instance!=""}'
+      resources:
+        overrides:
+          instance:
+            resource: node
+      metricsQuery: <<.Series>>{<<.LabelMatchers>>}
